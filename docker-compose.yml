@@ -1,0 +1,32 @@
+version: '3'
+services: 
+  web:
+    
+    # We use 'Dockerfile.dev'
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+
+    ports:
+      - "3000:3000"
+    volumes: 
+    # with ':'
+     # We want to map that current folder outside of the container 
+     #  into the app folder inside the container
+      - .:/app
+
+    # without ':'
+     # Do not try to map a folder up against `/app/node_modules' inside the container
+      - /app/node_modules
+
+  tests:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    
+    volumes: 
+      - /app/node_modules
+      - .:/app
+    
+    # Override the default command
+    command: ["npm", "run", "test"]
