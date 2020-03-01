@@ -9,3 +9,13 @@ before_install:
 # need to be exectued to actually run our test suite.
 script:
   - docker run -e CI=true leehj8687/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  resion: "ap-northeast-2"
+  app: "test_docker_react"
+  env: "TestDockerReact-env"
+  bucket_name: "elasticbeanstalk-ap-northeast-2-484222649392"
+  bucket_path: "test_docker_react"
+  on:
+    branch: master
