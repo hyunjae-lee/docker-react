@@ -17,7 +17,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          HI this is a deployed app by HJ
+          Learn React
         </a>
       </header>
     </div>
